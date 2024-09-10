@@ -4,6 +4,7 @@ import com.stream.backend.entities.Video;
 import com.stream.backend.services.VideoService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.StandardReflectionParameterNameDiscoverer;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,11 +14,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+
+@Service
 public class VideoServiceImpl implements VideoService {
 
     @Value("${files.video}")
     String DIR;
     @Override
+
     public Video save(Video video, MultipartFile file) {
         try{
             //return original fileName
