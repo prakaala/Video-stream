@@ -1,10 +1,11 @@
 package com.stream.backend.services.impl;
 
 import com.stream.backend.entities.Video;
+import com.stream.backend.repositories.VideoRepository;
 import com.stream.backend.services.VideoService;
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.StandardReflectionParameterNameDiscoverer;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,6 +25,13 @@ public class VideoServiceImpl implements VideoService {
 
     @Value("${files.video}")
     String DIR;
+
+
+    private VideoRepository videoRepository;
+
+    public VideoServiceImpl(VideoRepository videoRepository) {
+        this.videoRepository = videoRepository;
+    }
 
 
     @PostConstruct
@@ -71,17 +79,20 @@ public class VideoServiceImpl implements VideoService {
 
 
             //video metadata
-
+            video.setContentType(contentType);
+            video.setFilePath(path.toString());
 
             //saving metadata to our database
+           return videoRepository.save(video);
         }catch(IOException e){
             e.printStackTrace();
+            return null;
         }
 
 
 
 
-        return null;
+
     }
 
 
