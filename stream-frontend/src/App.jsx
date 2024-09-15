@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <div className='flex flex-col items-center space-y-9 justify-center py-9 '>
-        <h1 className='text-5xl font-extrabold dark:text-cyan-100'> Welcome to Video Streaming App</h1>
+        <h1 className='text-3xl font-bold dark:text-cyan-100'> Video Streaming App</h1>
 
         <VideoUpload/>
       </div>
